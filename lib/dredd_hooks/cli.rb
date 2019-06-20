@@ -3,7 +3,7 @@ require 'dredd_hooks'
 module DreddHooks
   class CLI
 
-    def self.start(error=STDERR, out=STDOUT, files)
+    def self.start(error=STDERR, out=STDOUT, options, files)
 
       # Load all files given on the command-line
       DreddHooks::FileLoader.load(files)
@@ -11,7 +11,7 @@ module DreddHooks
       # Run the server
       out.puts 'Starting Ruby Dredd Hooks Worker...'
       out.flush
-      server = DreddHooks::Server.new(error, out)
+      server = DreddHooks::Server.new(error, out, options)
       server.run
     end
   end
